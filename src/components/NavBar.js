@@ -49,7 +49,7 @@ class NavBar extends Component {
                         <Nav.Item className="mb-2">
                             {/* <PopUpHover content='Cart' trigger={<NavLink className="fas fa-shopping-basket"/>} /> */}
                             <NavLink to="/carts" onClick={() => { this.handleToggle() }}>
-                                <i className="fas fa-user-plus mr-2"></i>
+                                <i className="fas fa-shopping-basket mr-2"></i>
                                 cart
                             </NavLink>
                         </Nav.Item>
