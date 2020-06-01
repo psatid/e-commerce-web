@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ProductConsumer } from '../context';
+import { ProductConsumer } from '../../context';
 import { Link } from 'react-router-dom';
-import { ButtonContainer } from './Button';
+import { ButtonContainer } from '../Button';
 
 class Details extends Component {
     render() {
@@ -9,7 +9,16 @@ class Details extends Component {
             <ProductConsumer>
                 {(value) => {
                     // console.log(value.detailProduct)
-                    const { id, info, company, img, price, title, inCart } = value.detailProduct;
+                    const {
+                        id,
+                        info,
+                        company,
+                        img,
+                        price,
+                        title,
+                        inCart,
+                        onSale
+                    } = value.detailProduct;
                     return (
                         <div className="container py-5">
                             {/* title */}
@@ -23,7 +32,11 @@ class Details extends Component {
                             <div className="row">
                                 {/* frist col */}
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
-                                    <img src={img} className="img-fluid ml-5" alt="product"></img>
+                                    <img
+                                        src={img}
+                                        className="img-fluid ml-5"
+                                        alt="product"
+                                    ></img>
                                 </div>
 
                                 {/* second col */}
@@ -31,13 +44,35 @@ class Details extends Component {
                                     <h2>model: {title}</h2>
 
                                     <h4 className="text-title text-uppercase text-muted mt-3 mb-2">
-                                        made by: <span className="text-uppercase">
-                                            {company}</span>
+                                        made by:{' '}
+                                        <span className="text-uppercase">
+                                            {company}
+                                        </span>
                                     </h4>
 
                                     <h4 className="text-blue">
                                         <strong>
-                                            price: <span>${price}</span>
+                                            price:{' '}
+                                            {onSale > 0 ? (
+                                                <>
+                                                    <del
+                                                        style={{
+                                                            color: 'grey'
+                                                        }}
+                                                    >
+                                                        ${price}
+                                                    </del>
+                                                    <span>
+                                                        &ensp;$
+                                                        {value.getSalePrice(
+                                                            price,
+                                                            onSale
+                                                        )}
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <span>${price}</span>
+                                            )}
                                         </strong>
                                     </h4>
 
@@ -48,7 +83,7 @@ class Details extends Component {
                                     <p className="text-muted lead">{info}</p>
 
                                     <div>
-                                        <Link to='/productlists'>
+                                        <Link to="/productlists">
                                             <ButtonContainer>
                                                 back to products
                                             </ButtonContainer>
@@ -59,15 +94,15 @@ class Details extends Component {
                                             onClick={() => {
                                                 value.addToCart(id);
                                                 value.openModal(id);
-                                            }}>
-                                            {inCart ? 'in cart' : "add to cart"}
+                                            }}
+                                        >
+                                            {inCart ? 'in cart' : 'add to cart'}
                                         </ButtonContainer>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                    )
+                    );
                 }}
             </ProductConsumer>
         );

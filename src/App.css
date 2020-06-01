@@ -1,9 +1,10 @@
 :root{
-  --mainBlue:#2a2a72;
   --lightBlue:#009ffd;
   --mainWhite:#f3f3f3;
   --mainDark:#232528;
   --mainYellow:#ffa400;
+  --neutral: rgb(255, 250, 247);
+  --mainBlue: #0f4c81;
 }
 
 body{
@@ -19,7 +20,7 @@ body{
 }
 
 .text-blue{
-  color: var(--mainBlue);
+  color: var(--darkBlue);
 }
 
 .text-bright{

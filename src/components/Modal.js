@@ -8,7 +8,7 @@ class Modal extends Component {
     render() {
         return (
             <ProductConsumer>
-                {(value => {
+                {(value) => {
                     const { modalOpen, closeModal } = value;
                     const { img, title, price } = value.modalProduct;
 
@@ -18,25 +18,38 @@ class Modal extends Component {
                         return (
                             <ModalContainer>
                                 <div className="container">
-                                    <div className='col'>
-                                        <div id="modal" className='col-8 mx-auto col-md-6 col-lg-4 
-                                        text-center text-capitalize p-5'>
+                                    <div className="col">
+                                        <div
+                                            id="modal"
+                                            className="col-8 mx-auto col-md-6 col-lg-4 
+                                        text-center text-capitalize p-5"
+                                        >
                                             <h5>item added to the cart</h5>
-                                            <img src={img} className='img-fluid contentjustify--center' alt='product'></img>
+                                            <img
+                                                src={img}
+                                                className="img-fluid contentjustify--center"
+                                                alt="product"
+                                            ></img>
                                             <h5>{title}</h5>
-                                            <h5 className="text-muted">price: ${price}</h5>
-                                            <Link to='/carts'>
-                                                <ButtonContainer onClick={() => {
-                                                    closeModal();
-                                                }}>
+                                            <h5 className="text-muted">
+                                                price: ${price}
+                                            </h5>
+                                            <Link to="/carts">
+                                                <ButtonContainer
+                                                    onClick={() => {
+                                                        closeModal();
+                                                    }}
+                                                >
                                                     go to cart
                                                 </ButtonContainer>
                                             </Link>
 
-                                            <Link to='/'>
-                                                <ButtonContainer onClick={() => {
-                                                    closeModal();
-                                                }}>
+                                            <Link to="/productlists">
+                                                <ButtonContainer
+                                                    onClick={() => {
+                                                        closeModal();
+                                                    }}
+                                                >
                                                     continue shopping
                                                 </ButtonContainer>
                                             </Link>
@@ -46,7 +59,7 @@ class Modal extends Component {
                             </ModalContainer>
                         );
                     }
-                })}
+                }}
             </ProductConsumer>
         );
     }
@@ -54,17 +67,17 @@ class Modal extends Component {
 
 const ModalContainer = styled.div`
     position: fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background:rgba(0,0,0,0.3);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    #modal{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    #modal {
         background: var(--mainWhite);
     }
-`
+`;
 
 export default Modal;
